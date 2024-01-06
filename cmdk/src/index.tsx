@@ -58,6 +58,18 @@ type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'o
    */
   onValueChange?: (search: string) => void
 }
+
+type TextAreaProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange' | 'type'> & {
+  /**
+   * Optional controlled state for the value of the search input.
+   */
+  value?: string
+  /**
+   * Event handler called when the search value changes.
+   */
+  onValueChange?: (search: string) => void
+}
+
 type CommandProps = Children &
   DivProps & {
     /**
@@ -766,7 +778,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>((props, forwardedRe
  * Command menu textarea.
  * All props are forwarded to the underyling `textarea` element.
  */
-const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>((props, forwardedRef) => {
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>((props, forwardedRef) => {
   const { onValueChange, ...etc } = props
   const isControlled = props.value != null
   const store = useStore()
@@ -788,7 +800,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>((props, forwa
   return (
     <textarea
       ref={forwardedRef}
-      // {...etc}
+      {...etc}
       cmdk-input=""
       autoComplete="off"
       autoCorrect="off"
@@ -797,6 +809,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, InputProps>((props, forwa
       role="combobox"
       aria-controls={context.listId}
       aria-labelledby={context.labelId}
+      className={etc.className}
       aria-activedescendant={selectedItemId}
       id={context.inputId}
       value={isControlled ? props.value : search}
