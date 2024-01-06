@@ -111,7 +111,7 @@ declare const Input: React.ForwardRefExoticComponent<Omit<React.InputHTMLAttribu
  * Command menu textarea.
  * All props are forwarded to the underyling `textarea` element.
  */
-declare const Textarea: React.ForwardRefExoticComponent<Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> & {
+declare const Textarea: React.ForwardRefExoticComponent<Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange" | "type"> & {
     /**
      * Optional controlled state for the value of the search input.
      */
@@ -306,7 +306,7 @@ declare const pkg: React.ForwardRefExoticComponent<Children & DivProps & {
         /** Estimated progress of loading asynchronous options. */
         progress?: number;
     } & React.RefAttributes<HTMLDivElement>>;
-    Textarea: React.ForwardRefExoticComponent<Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "type"> & {
+    Textarea: React.ForwardRefExoticComponent<Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange" | "type"> & {
         /**
          * Optional controlled state for the value of the search input.
          */
